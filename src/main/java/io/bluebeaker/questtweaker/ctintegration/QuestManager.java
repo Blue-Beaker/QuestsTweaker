@@ -32,7 +32,8 @@ public class QuestManager {
         if(QuestUtils.isTaskUnlocked(taskData))
             taskData.addProgress(progress);
         else{
-            QuestTweakerMod.getLogger().atInfo().log("Cant find task with id "+Integer.toHexString(taskID));
+            if(taskData==null)
+                QuestTweakerMod.getLogger().atInfo().log("addTaskProgress: Cant find task with id "+Integer.toHexString(taskID));
         }
     }
 
@@ -49,7 +50,8 @@ public class QuestManager {
         if(QuestUtils.isTaskUnlocked(taskData))
             taskData.setProgress(progress);
         else{
-            QuestTweakerMod.getLogger().atInfo().log("Cant find task with id"+Integer.toHexString(taskID));
+            if(taskData==null)
+                QuestTweakerMod.getLogger().atInfo().log("setTaskProgress: Cant find task with id"+Integer.toHexString(taskID));
         }
     }
 
