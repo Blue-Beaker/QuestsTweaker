@@ -26,6 +26,10 @@ public class DummyTask extends Task {
         this.value = 1;
     }
 
+    public long getMaxProgress() {
+        return (long)this.value;
+    }
+
     @Override
     public TaskType getType() {
         return QuestTweakerPlugin.DUMMY_TASK;
