@@ -35,6 +35,7 @@ events.onPlayerPickupItem(function(event as crafttweaker.event.PlayerPickupItemE
 Add a new function to use with this mod's 'Function' tasks and rewards:  
 `FunctionManager.addFunction(string functionID, function(IPlayer) -> long);`  
 The function __must__ return an long.  
+Example 1: Player's current altitude
 ```
 import mods.queststweaker.FunctionManager;
 import crafttweaker.player.IPlayer;
@@ -43,6 +44,7 @@ FunctionManager.addFunction("height",function(player as IPlayer){
     return player.y as long;
 });
 ```
+Example 2: On a Rail [on_a_rail.zs](Examples/on_a_rail.zs)  
 
 ## FTBQuests Integration
 ### Function Task

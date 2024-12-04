@@ -1,4 +1,4 @@
-// An example of replicating the "On A Rail" achievement from legacy versions of Minecraft.
+// An example of replicating the "On A Rail" achievement of legacy versions of Minecraft.
 // In FTBQuests, add a new 'Function' task with functionID 'minecart_distance', and value '1000'. 
 // Then take a ride of minecart and check the task to see the results.
 

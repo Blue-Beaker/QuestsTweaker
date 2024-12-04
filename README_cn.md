@@ -43,6 +43,7 @@ FunctionManager.addFunction("height",function(player as IPlayer){
     return player.y as long;
 });
 ```
+示例 2: 在铁路上 [on_a_rail.zs](Examples/on_a_rail.zs)  
 
 ## FTBQuests 集成
 ### 函数任务
