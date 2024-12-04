@@ -1,5 +1,5 @@
 # QuestsTweaker
-A mod to integrate FTBQuests quests with CraftTweaker.  
+A mod to integrate FTBQuests with CraftTweaker.  
 
 ## Features
 - Add/set progress for an existing quest from crafttweaker.  
@@ -8,7 +8,8 @@ A mod to integrate FTBQuests quests with CraftTweaker.
 
 ## CraftTweaker API
 ### mods.questtweaker.QuestManager
-Add/set progress for any existing and available task from crafttweaker:
+Add/set progress for any existing and available task from crafttweaker:  
+When the task is unavailable (for example has dependencies uncompleted), this function does nothing.  
 `QuestManager.addTaskProgress(IPlayer player, string/int id, long progress);`
 `QuestManager.setTaskProgress(IPlayer player, string/int id, long progress);`
 ```
@@ -31,8 +32,8 @@ events.onPlayerPickupItem(function(event as crafttweaker.event.PlayerPickupItemE
 ```
 
 ### mods.questtweaker.FunctionManager
-Add a new function to use with this mod's 'Function' tasks and rewards:
-`FunctionManager.addFunction(string functionID, function(IPlayer) -> long);`
+Add a new function to use with this mod's 'Function' tasks and rewards:  
+`FunctionManager.addFunction(string functionID, function(IPlayer) -> long);`  
 The function __must__ return an long.  
 ```
 import mods.queststweaker.FunctionManager;

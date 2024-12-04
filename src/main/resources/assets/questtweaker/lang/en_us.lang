@@ -1,7 +1,7 @@
 ftbquests.task.questtweaker.function=Function
 ftbquests.task.questtweaker.function.functionid=Function ID
 ftbquests.task.questtweaker.function.value=Value
-ftbquests.task.questtweaker.function.interval=Check Interval (0 = Manual)
+ftbquests.task.questtweaker.function.interval=Checking Interval (0 = Manual)
 
 ftbquests.task.questtweaker.dummy=Dummy
 ftbquests.task.questtweaker.dummy.value=Value

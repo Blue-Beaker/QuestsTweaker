@@ -1,0 +1,10 @@
+ftbquests.task.questtweaker.function=函数
+ftbquests.task.questtweaker.function.functionid=函数 ID
+ftbquests.task.questtweaker.function.value=值
+ftbquests.task.questtweaker.function.interval=检查周期 (0 = 手动)
+
+ftbquests.task.questtweaker.dummy=虚拟
+ftbquests.task.questtweaker.dummy.value=值
+
+ftbquests.reward.questtweaker.function=函数
+ftbquests.reward.questtweaker.function.functionid=函数 ID
