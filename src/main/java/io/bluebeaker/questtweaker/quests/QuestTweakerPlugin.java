@@ -11,6 +11,8 @@ public class QuestTweakerPlugin {
     public static TaskType FUNCTION_TASK;
     public static RewardType FUNCTION_REWARD;
 
+    public static TaskType DUMMY_TASK;
+
     public QuestTweakerPlugin(){}
 
     public static void preInit() {
@@ -20,6 +22,8 @@ public class QuestTweakerPlugin {
     @SubscribeEvent
     public static void registerTasks(RegistryEvent.Register<TaskType> event) {
         event.getRegistry().register(FUNCTION_TASK = ((TaskType)(new TaskType(FunctionTask::new)).setRegistryName("function").setIcon(Icon.getIcon("minecraft:blocks/crafting_table_top"))));
+
+        event.getRegistry().register(DUMMY_TASK = ((TaskType)(new TaskType(DummyTask::new)).setRegistryName("dummy").setIcon(Icon.getIcon("minecraft:blocks/planks_oak"))));
     }
 
     @SubscribeEvent
