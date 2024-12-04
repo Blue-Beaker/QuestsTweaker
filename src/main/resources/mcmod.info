@@ -8,5 +8,6 @@
 	"credits": "${mod_credits}",
 	"url": "${mod_url}",
 	"updateJSON": "${mod_update_json}",
-	"logoFile": "${mod_logo_path}"
+	"logoFile": "${mod_logo_path}",
+	"dependencies": ["crafttweaker>=4.1.20.689","ftbquests>=1202.9.0.15"]
 }]
