@@ -4,6 +4,7 @@ import crafttweaker.CraftTweakerAPI;
 import crafttweaker.IAction;
 import crafttweaker.annotations.ZenRegister;
 import crafttweaker.api.minecraft.CraftTweakerMC;
+import io.bluebeaker.questtweaker.QuestTweakerMod;
 import net.minecraft.entity.player.EntityPlayer;
 import stanhebben.zenscript.annotations.ZenClass;
 import stanhebben.zenscript.annotations.ZenMethod;
@@ -25,6 +26,7 @@ public class FunctionManager {
         return FUNCTIONS.get(functionID);
     }
 
+    /**Run the function and get its return value */
     public static long runFunction(String functionID,EntityPlayer player){
         IQuestsFunction function = getFunction(functionID);
         if(function==null)
@@ -44,6 +46,9 @@ public class FunctionManager {
 
         @Override
         public void apply() {
+            if(FUNCTIONS.containsKey(functionID)){
+                QuestTweakerMod.getLogger().warn("Duplicate function ID: '"+functionID+"'. Function IDs should be unique, please check your scripts. ");
+            }
             FUNCTIONS.put(functionID, function);
         }
 
