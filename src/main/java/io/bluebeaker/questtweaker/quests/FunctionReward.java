@@ -52,7 +52,7 @@ public class FunctionReward extends Reward {
     }
 
     public String getAltTitle() {
-        return "Function: " + this.functionID;
+        return this.getType().getDisplayName() +": " + this.functionID;
     }
 
     @SideOnly(Side.CLIENT)

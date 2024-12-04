@@ -83,7 +83,7 @@ public class FunctionTask extends Task {
     }
 
     public String getAltTitle() {
-        return "Function: " + this.functionID;
+        return this.getType().getDisplayName() +": " + this.functionID;
     }
 
     @SideOnly(Side.CLIENT)
