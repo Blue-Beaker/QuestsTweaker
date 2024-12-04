@@ -5,9 +5,12 @@ A mod to integrate FTBQuests quests with CraftTweaker.
 todo:  
 - New 'CraftTweaker Function' quest type, that executes a function and completes the quest if the function returns true  
 
-## Documentation
-
+## CraftTweaker API
+### mods.questtweaker.QuestManager
 Add/set progress for any existing and available task from crafttweaker:
+`QuestManager.addTaskProgress(IPlayer player, string/int id, long progress);`
+`QuestManager.setTaskProgress(IPlayer player, string/int id, long progress);`
+Example:  
 ```
 import mods.questtweaker.QuestManager;
 // Add progress
@@ -20,7 +23,10 @@ QuestManager.addTaskProgress(event.player,0x4c4bd563,1 as long);
 QuestManager.setTaskProgress(event.player,"4c4bd563",1 as long);
 ```  
 
+### mods.questtweaker.FunctionManager
 Add a new function to use with this mod's 'Function' tasks and rewards:
+`FunctionManager.addFunction(string functionID, function(IPlayer) -> int);`
+The function __must__ return an integer.  
 ```
 import mods.queststweaker.FunctionManager;
 import crafttweaker.player.IPlayer;
@@ -29,3 +35,21 @@ FunctionManager.addFunction("height",function(player as IPlayer){
     return player.y as int;
 });
 ```
+
+## FTBQuests Integration
+### Function Task
+Executes a function peridocally, and uses its return value as the progress.  
+Parameters:  
+- Function ID: the function ID registered in scripts.  
+- Value: The value needed to complete the task.  
+- Interval: The interval to run the function. Set to 0 for manual submission.  
+
+### Function Reward
+Executes a function when collected.  
+Parameters:  
+- Function ID: the function ID registered in scripts.  
+
+### Dummy Task
+Does nothing on its own. Intended to use with the QuestManager above.  
+Parameters:  
+- Value: The value needed to complete the task.  
