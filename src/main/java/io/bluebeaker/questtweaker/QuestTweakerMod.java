@@ -1,5 +1,6 @@
 package io.bluebeaker.questtweaker;
 
+import io.bluebeaker.questtweaker.quests.QuestTweakerPlugin;
 import org.apache.logging.log4j.Logger;
 
 import net.minecraft.server.MinecraftServer;
@@ -30,7 +31,9 @@ public class QuestTweakerMod
     
     @EventHandler
     public void preInit(FMLPreInitializationEvent event) {
+
         logger = event.getModLog();
+        QuestTweakerPlugin.preInit();
     }
     @EventHandler
     public void onServerStart(FMLServerStartingEvent event){
