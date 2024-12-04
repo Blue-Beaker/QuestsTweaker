@@ -7,5 +7,5 @@ import stanhebben.zenscript.annotations.ZenClass;
 @ZenClass("mods.queststweaker.ITaskFunction")
 @ZenRegister
 public interface IQuestsFunction {
-    int process(IPlayer player);
+    long process(IPlayer player);
 }

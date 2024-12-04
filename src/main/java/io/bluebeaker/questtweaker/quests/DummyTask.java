@@ -19,7 +19,7 @@ import net.minecraftforge.fml.relauncher.SideOnly;
 
 public class DummyTask extends Task {
     /**When the function returns a value greater than this, quest will be complete */
-    public int value;
+    public long value;
 
     public DummyTask(Quest q) {
         super(q);
@@ -38,7 +38,7 @@ public class DummyTask extends Task {
     public void writeData(NBTTagCompound nbt) {
         super.writeData(nbt);
         if (this.value != 1) {
-            nbt.setInteger("value", this.value);
+            nbt.setLong("value", this.value);
         }
 
     }
@@ -54,7 +54,7 @@ public class DummyTask extends Task {
 
     public void writeNetData(DataOut data) {
         super.writeNetData(data);
-        data.writeVarInt(this.value);
+        data.writeVarLong(this.value);
     }
 
     public void readNetData(DataIn data) {
@@ -65,7 +65,7 @@ public class DummyTask extends Task {
     @SideOnly(Side.CLIENT)
     public void getConfig(ConfigGroup config) {
         super.getConfig(config);
-        config.addInt("value", () -> this.value, (v) -> this.value = v, 1, 1, Integer.MAX_VALUE);
+        config.addLong("value", () -> this.value, (v) -> this.value = v, 1, 1, Long.MAX_VALUE);
     }
 
     // DummyTask can't be submitted

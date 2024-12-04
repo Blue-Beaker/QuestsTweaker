@@ -25,7 +25,7 @@ public class FunctionManager {
         return FUNCTIONS.get(functionID);
     }
 
-    public static int runFunction(String functionID,EntityPlayer player){
+    public static long runFunction(String functionID,EntityPlayer player){
         IQuestsFunction function = getFunction(functionID);
         if(function==null)
             return -1;

@@ -20,7 +20,7 @@ import java.util.List;
 
 public class FunctionTask extends Task {
     /**When the function returns a value greater than this, quest will be complete */
-    public int value;
+    public long value;
     /**The interval to call function */
     public int interval;
     /**The ID of the function to call */
@@ -46,7 +46,7 @@ public class FunctionTask extends Task {
         super.writeData(nbt);
         nbt.setString("function", this.functionID);
         if (this.value != 1) {
-            nbt.setInteger("value", this.value);
+            nbt.setLong("value", this.value);
         }
         if (this.interval != 10) {
             nbt.setInteger("interval", this.interval);
@@ -71,7 +71,7 @@ public class FunctionTask extends Task {
     public void writeNetData(DataOut data) {
         super.writeNetData(data);
         data.writeString(this.functionID);
-        data.writeVarInt(this.value);
+        data.writeVarLong(this.value);
         data.writeVarInt(this.interval);
     }
 
@@ -91,7 +91,7 @@ public class FunctionTask extends Task {
         super.getConfig(config);
 
         config.addString("functionID",()->this.functionID,(id)->this.functionID=id, "");
-        config.addInt("value", () -> this.value, (v) -> this.value = v, 1, 1, Integer.MAX_VALUE);
+        config.addLong("value", () -> this.value, (v) -> this.value = v, 1, 1, Long.MAX_VALUE);
         config.addInt("interval", () -> this.interval, (v) -> this.interval = v, 10, 0, Integer.MAX_VALUE);
     }
     // Set to 0 to for manual submit
@@ -124,7 +124,7 @@ public class FunctionTask extends Task {
 
         public void submitTask(EntityPlayerMP player, ItemStack item) {
             if (!this.isComplete()) {
-                int set = Math.min(((FunctionTask)this.task).value, FunctionManager.runFunction(((FunctionTask)this.task).functionID,player));
+                long set = Math.min(((FunctionTask)this.task).value, FunctionManager.runFunction(((FunctionTask)this.task).functionID,player));
                 if(set>=0)
                     this.setProgress((long)set);
             }

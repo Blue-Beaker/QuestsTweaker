@@ -32,14 +32,14 @@ events.onPlayerPickupItem(function(event as crafttweaker.event.PlayerPickupItemE
 
 ### mods.questtweaker.FunctionManager
 Add a new function to use with this mod's 'Function' tasks and rewards:
-`FunctionManager.addFunction(string functionID, function(IPlayer) -> int);`
-The function __must__ return an integer.  
+`FunctionManager.addFunction(string functionID, function(IPlayer) -> long);`
+The function __must__ return an long.  
 ```
 import mods.queststweaker.FunctionManager;
 import crafttweaker.player.IPlayer;
-// string functionID, function(IPlayer) -> int
+// string functionID, function(IPlayer) -> long
 FunctionManager.addFunction("height",function(player as IPlayer){
-    return player.y as int;
+    return player.y as long;
 });
 ```
 
