@@ -1,5 +1,6 @@
 package io.bluebeaker.questtweaker.quests;
 
+import com.feed_the_beast.ftblib.lib.icon.Icon;
 import com.feed_the_beast.ftbquests.quest.task.TaskType;
 import io.bluebeaker.questtweaker.quests.task.FunctionTask;
 import net.minecraftforge.common.MinecraftForge;
@@ -17,6 +18,6 @@ public class QuestTweakerPlugin {
 
     @SubscribeEvent
     public static void registerTasks(RegistryEvent.Register<TaskType> event) {
-        event.getRegistry().register(FUNCTION = ((TaskType)(new TaskType(FunctionTask::new)).setRegistryName("questtweaker_function")));
+        event.getRegistry().register(FUNCTION = ((TaskType)(new TaskType(FunctionTask::new)).setRegistryName("function").setIcon(Icon.getIcon("minecraft:blocks/crafting_table_top"))));
     }
 }

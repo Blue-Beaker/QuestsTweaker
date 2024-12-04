@@ -15,6 +15,7 @@ import java.util.HashMap;
 public class FunctionManager {
     public static final HashMap<String, IQuestsFunction> FUNCTIONS = new HashMap<String, IQuestsFunction>();
 
+    /** Function: IPlayer -> int. Negative value is ignored and can be used to cancel the function. */
     @ZenMethod
     public static void addFunction(String functionID,IQuestsFunction function){
         CraftTweakerAPI.apply(new AddFunctionAction(functionID, function));
@@ -27,7 +28,7 @@ public class FunctionManager {
     public static int runFunction(String functionID,EntityPlayer player){
         IQuestsFunction function = getFunction(functionID);
         if(function==null)
-            return 0;
+            return -1;
         return function.process(CraftTweakerMC.getIPlayer(player));
     }
 

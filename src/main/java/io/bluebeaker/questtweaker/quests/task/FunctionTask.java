@@ -3,6 +3,7 @@ package io.bluebeaker.questtweaker.quests.task;
 import com.feed_the_beast.ftblib.lib.config.ConfigGroup;
 import com.feed_the_beast.ftblib.lib.io.DataIn;
 import com.feed_the_beast.ftblib.lib.io.DataOut;
+import com.feed_the_beast.ftblib.lib.util.misc.NameMap;
 import com.feed_the_beast.ftbquests.quest.Quest;
 import com.feed_the_beast.ftbquests.quest.QuestData;
 import com.feed_the_beast.ftbquests.quest.task.*;
@@ -16,7 +17,7 @@ import net.minecraftforge.fml.relauncher.SideOnly;
 
 public class FunctionTask extends Task {
     /**When the function returns a value greater than this, quest will be complete */
-    public int amount;
+    public int value;
     /**The interval to call function */
     public int interval;
     /**The ID of the function to call */
@@ -24,13 +25,13 @@ public class FunctionTask extends Task {
 
     public FunctionTask(Quest q) {
         super(q);
-        this.amount=1;
+        this.value=1;
         this.interval=10;
         this.functionID="";
     }
 
     public long getMaxProgress() {
-        return (long)this.amount;
+        return (long)this.value;
     }
 
     @Override
@@ -41,8 +42,8 @@ public class FunctionTask extends Task {
     public void writeData(NBTTagCompound nbt) {
         super.writeData(nbt);
         nbt.setString("function", this.functionID);
-        if (this.amount != 1) {
-            nbt.setInteger("amount", this.amount);
+        if (this.value != 1) {
+            nbt.setInteger("value", this.value);
         }
         if (this.interval != 10) {
             nbt.setInteger("interval", this.interval);
@@ -54,9 +55,9 @@ public class FunctionTask extends Task {
         super.readData(nbt);
         this.functionID = nbt.getString("function");
 
-        this.amount = nbt.hasKey("amount") ? (int)Math.min(2147483647L, nbt.getLong("amount")) : 1;
-        if (this.amount < 1) {
-            this.amount = 1;
+        this.value = nbt.hasKey("value") ? (int)Math.min(2147483647L, nbt.getLong("value")) : 1;
+        if (this.value < 1) {
+            this.value = 1;
         }
         this.interval = nbt.hasKey("interval") ? (int)Math.min(2147483647L, nbt.getLong("interval")) : 10;
         if (this.interval < 1) {
@@ -67,26 +68,28 @@ public class FunctionTask extends Task {
     public void writeNetData(DataOut data) {
         super.writeNetData(data);
         data.writeString(this.functionID);
-        data.writeVarInt(this.amount);
+        data.writeVarInt(this.value);
         data.writeVarInt(this.interval);
     }
 
     public void readNetData(DataIn data) {
         super.readNetData(data);
         this.functionID = data.readString();
-        this.amount = data.readVarInt();
+        this.value = data.readVarInt();
         this.interval = data.readVarInt();
     }
 
     public String getAltTitle() {
-        return "Function: " + this.functionID + " returns >= "+this.amount;
+        return "Function: " + this.functionID;
     }
 
     @SideOnly(Side.CLIENT)
     public void getConfig(ConfigGroup config) {
         super.getConfig(config);
-        config.addString("functionID",()->this.functionID,(id)->this.functionID=id,"");
-        config.addInt("amount", () -> this.amount, (v) -> this.amount = v, 1, 1, Integer.MAX_VALUE);
+
+        config.addString("functionID",()->this.functionID,(id)->this.functionID=id, "");
+        config.addInt("value", () -> this.value, (v) -> this.value = v, 1, 1, Integer.MAX_VALUE);
+        config.addInt("interval", () -> this.interval, (v) -> this.interval = v, 10, 1, Integer.MAX_VALUE);
     }
 
     public int autoSubmitOnPlayerTick() {
@@ -109,8 +112,8 @@ public class FunctionTask extends Task {
 
         public void submitTask(EntityPlayerMP player, ItemStack item) {
             if (!this.isComplete()) {
-                int set = Math.min(((FunctionTask)this.task).amount,
-                        FunctionManager.runFunction(((FunctionTask)this.task).functionID,player));
+                int set = Math.min(((FunctionTask)this.task).value, FunctionManager.runFunction(((FunctionTask)this.task).functionID,player));
+                if(set>=0)
                     this.setProgress((long)set);
             }
         }
