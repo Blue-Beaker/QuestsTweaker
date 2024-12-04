@@ -7,7 +7,4 @@ import net.minecraftforge.common.config.Config.Type;
 
 @Config(modid = QuestTweakerMod.MODID,type = Type.INSTANCE,category = "general")
 public class QuestTweakerConfig {
-    @Comment("Example")
-    @LangKey("config.questtweaker.example.name")
-    public static boolean example = true;
 }
