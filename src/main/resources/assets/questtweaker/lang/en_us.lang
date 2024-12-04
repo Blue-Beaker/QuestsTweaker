@@ -2,3 +2,5 @@ ftbquests.task.questtweaker.function=Function
 ftbquests.task.questtweaker.function.functionid=Function ID
 ftbquests.task.questtweaker.function.value=Value
 ftbquests.task.questtweaker.function.interval=Check Interval (0 = Manual)
+ftbquests.reward.questtweaker.function=Function
+ftbquests.reward.questtweaker.function.functionid=Function ID

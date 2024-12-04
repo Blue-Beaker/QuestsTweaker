@@ -21,4 +21,9 @@ public class QuestTweakerPlugin {
     public static void registerTasks(RegistryEvent.Register<TaskType> event) {
         event.getRegistry().register(FUNCTION_TASK = ((TaskType)(new TaskType(FunctionTask::new)).setRegistryName("function").setIcon(Icon.getIcon("minecraft:blocks/crafting_table_top"))));
     }
+
+    @SubscribeEvent
+    public static void registerRewards(RegistryEvent.Register<RewardType> event) {
+        event.getRegistry().register(FUNCTION_REWARD = ((RewardType)(new RewardType(FunctionReward::new)).setRegistryName("function").setIcon(Icon.getIcon("minecraft:blocks/crafting_table_top"))));
+    }
 }
