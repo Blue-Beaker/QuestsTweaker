@@ -3,8 +3,8 @@ A mod to integrate FTBQuests quests with CraftTweaker.
 
 ## Features
 - Add/set progress for an existing quest from crafttweaker.  
-todo:  
-- New 'CraftTweaker Function' quest type, that executes a function and completes the quest if the function returns true  
+- New 'Function' task type that runs a crafttweaker function to check progress.  
+- New 'Function' reward type that runs a crafttweaker funtion on completion.  
 
 ## CraftTweaker API
 ### mods.questtweaker.QuestManager
