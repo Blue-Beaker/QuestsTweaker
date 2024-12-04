@@ -11,7 +11,7 @@ import stanhebben.zenscript.annotations.ZenMethod;
 
 import java.util.HashMap;
 
-@ZenClass("mods.queststweaker.FunctionManager")
+@ZenClass("mods.questtweaker.FunctionManager")
 @ZenRegister
 public class FunctionManager {
     public static final HashMap<String, IQuestsFunction> FUNCTIONS = new HashMap<String, IQuestsFunction>();
