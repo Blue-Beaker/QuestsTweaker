@@ -1,6 +1,6 @@
 @ParametersAreNonnullByDefault
 @MethodsReturnNonnullByDefault
-package io.bluebeaker.questtweaker.quests.task;
+package io.bluebeaker.questtweaker.quests;
 
 import mcp.MethodsReturnNonnullByDefault;
 

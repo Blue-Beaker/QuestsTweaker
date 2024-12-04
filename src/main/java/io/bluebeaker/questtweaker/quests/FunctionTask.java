@@ -1,19 +1,22 @@
-package io.bluebeaker.questtweaker.quests.task;
+package io.bluebeaker.questtweaker.quests;
 
 import com.feed_the_beast.ftblib.lib.config.ConfigGroup;
 import com.feed_the_beast.ftblib.lib.io.DataIn;
 import com.feed_the_beast.ftblib.lib.io.DataOut;
-import com.feed_the_beast.ftblib.lib.util.misc.NameMap;
 import com.feed_the_beast.ftbquests.quest.Quest;
 import com.feed_the_beast.ftbquests.quest.QuestData;
 import com.feed_the_beast.ftbquests.quest.task.*;
 import io.bluebeaker.questtweaker.ctintegration.FunctionManager;
-import io.bluebeaker.questtweaker.quests.QuestTweakerPlugin;
+import net.minecraft.client.resources.I18n;
 import net.minecraft.entity.player.EntityPlayerMP;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
+import net.minecraft.util.text.TextFormatting;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
+
+import javax.annotation.Nullable;
+import java.util.List;
 
 public class FunctionTask extends Task {
     /**When the function returns a value greater than this, quest will be complete */
@@ -36,7 +39,7 @@ public class FunctionTask extends Task {
 
     @Override
     public TaskType getType() {
-        return QuestTweakerPlugin.FUNCTION;
+        return QuestTweakerPlugin.FUNCTION_TASK;
     }
 
     public void writeData(NBTTagCompound nbt) {
@@ -60,8 +63,8 @@ public class FunctionTask extends Task {
             this.value = 1;
         }
         this.interval = nbt.hasKey("interval") ? (int)Math.min(2147483647L, nbt.getLong("interval")) : 10;
-        if (this.interval < 1) {
-            this.interval = 1;
+        if (this.interval < 0) {
+            this.interval = 0;
         }
     }
 
@@ -89,11 +92,20 @@ public class FunctionTask extends Task {
 
         config.addString("functionID",()->this.functionID,(id)->this.functionID=id, "");
         config.addInt("value", () -> this.value, (v) -> this.value = v, 1, 1, Integer.MAX_VALUE);
-        config.addInt("interval", () -> this.interval, (v) -> this.interval = v, 10, 1, Integer.MAX_VALUE);
+        config.addInt("interval", () -> this.interval, (v) -> this.interval = v, 10, 0, Integer.MAX_VALUE);
     }
-
+    // Set to 0 to for manual submit
     public int autoSubmitOnPlayerTick() {
         return this.interval;
+    }
+    // Adds 'Click to submit' if the task is not automatic
+    @SideOnly(Side.CLIENT)
+    public void addMouseOverText(List<String> list, @Nullable TaskData data) {
+        if (this.interval==0) {
+            list.add("");
+            list.add(TextFormatting.YELLOW.toString() + TextFormatting.UNDERLINE + I18n.format("ftbquests.task.click_to_submit", new Object[0]));
+        }
+
     }
 
     @Override
