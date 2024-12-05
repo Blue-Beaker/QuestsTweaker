@@ -1,6 +1,6 @@
 package io.bluebeaker.questtweaker.ctintegration.questobjects;
 
-import com.feed_the_beast.ftbquests.quest.QuestObject;
+import com.feed_the_beast.ftbquests.quest.QuestObjectBase;
 import crafttweaker.annotations.ZenRegister;
 import stanhebben.zenscript.annotations.ZenClass;
 import stanhebben.zenscript.annotations.ZenGetter;
@@ -9,24 +9,25 @@ import stanhebben.zenscript.annotations.ZenMethod;
 @ZenClass("mods.queststweaker.questobjects.IQuestObject")
 @ZenRegister
 public abstract class IQuestObject {
-    public QuestObject questObject;
+
+    public abstract QuestObjectBase getQuestObject();
 
     @ZenMethod
     @ZenGetter("title")
     public String getTitle(){
-        return this.questObject.getTitle();
+        return this.getQuestObject().getTitle();
     }
 
     @ZenMethod
     @ZenGetter("parentID")
     public int getParentID(){
-        return this.questObject.getParentID();
+        return this.getQuestObject().getParentID();
     }
 
     @ZenMethod
     @ZenGetter("id")
     public int getID(){
-        return this.questObject.id;
+        return this.getQuestObject().id;
     }
 
 }

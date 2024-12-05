@@ -44,6 +44,6 @@ public class IQuestData {
 
     @ZenMethod
     public ITaskData getTaskData(ITask task){
-        return new ITaskData(this.questData.getTaskData(task.questObject));
+        return new ITaskData(this.questData.getTaskData(task.task));
     }
 }
