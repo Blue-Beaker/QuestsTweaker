@@ -1,6 +1,5 @@
 package io.bluebeaker.questtweaker.ctintegration.questobjects;
 
-import com.feed_the_beast.ftbquests.quest.Quest;
 import com.feed_the_beast.ftbquests.quest.reward.Reward;
 import crafttweaker.annotations.ZenRegister;
 import stanhebben.zenscript.annotations.ZenClass;

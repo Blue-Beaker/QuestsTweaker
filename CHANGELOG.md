@@ -5,3 +5,4 @@ Added Function:
 - `QuestManager.getTaskProgress(IPlayer iPlayer, string/int taskID)`  
 ## 1.1.0
 Added various zenClasses to manipulate with quests, tasks and rewards.  
+Changed QuestManager to only change task progress when its unlocked and uncompleted.  

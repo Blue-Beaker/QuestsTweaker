@@ -1,20 +1,14 @@
 package io.bluebeaker.questtweaker.ctintegration;
 
-import com.feed_the_beast.ftbquests.FTBQuests;
-import com.feed_the_beast.ftbquests.quest.QuestData;
-import com.feed_the_beast.ftbquests.quest.task.Task;
 import com.feed_the_beast.ftbquests.quest.task.TaskData;
 import crafttweaker.annotations.ZenRegister;
 import crafttweaker.api.minecraft.CraftTweakerMC;
 import crafttweaker.api.player.IPlayer;
 import io.bluebeaker.questtweaker.QuestTweakerMod;
-import io.bluebeaker.questtweaker.ctintegration.quests.ITaskData;
 import io.bluebeaker.questtweaker.utils.QuestUtils;
 import net.minecraft.entity.player.EntityPlayer;
 import stanhebben.zenscript.annotations.ZenClass;
 import stanhebben.zenscript.annotations.ZenMethod;
-
-import javax.annotation.Nullable;
 
 @ZenClass("mods.questtweaker.QuestManager")
 @ZenRegister
