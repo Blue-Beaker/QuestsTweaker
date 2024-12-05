@@ -7,11 +7,14 @@ A mod to integrate FTBQuests with CraftTweaker.
 - New 'Function' reward type that runs a crafttweaker funtion on completion.  
 
 ## CraftTweaker API
+See [wiki](https://github.com/Blue-Beaker/QuestsTweaker/wiki) for more documentation.  
 ### mods.questtweaker.QuestManager
 Add/set progress for any existing and available task from crafttweaker:  
 When the task is unavailable (for example has dependencies uncompleted), this function does nothing.  
-`QuestManager.addTaskProgress(IPlayer player, string/int id, long progress);`
-`QuestManager.setTaskProgress(IPlayer player, string/int id, long progress);`
+```
+QuestManager.addTaskProgress(IPlayer player, string/int id, long progress);
+QuestManager.setTaskProgress(IPlayer player, string/int id, long progress);
+```
 ```
 import mods.questtweaker.QuestManager;
 // Add progress
@@ -33,7 +36,9 @@ events.onPlayerPickupItem(function(event as crafttweaker.event.PlayerPickupItemE
 
 ### mods.questtweaker.FunctionManager
 Add a new function to use with this mod's 'Function' tasks and rewards:  
-`FunctionManager.addFunction(string functionID, function(IPlayer) -> long);`  
+```
+FunctionManager.addFunction(string functionID, function(IPlayer) -> long);
+```  
 The function __must__ return an long.  
 Example 1: Player's current altitude
 ```
