@@ -2,7 +2,7 @@
 // In FTBQuests, add a new 'Function' task with functionID 'minecart_distance', and value '1000'. 
 // Then take a ride of minecart and check the task to see the results.
 
-import mods.queststweaker.FunctionManager;
+import mods.questtweaker.FunctionManager;
 import crafttweaker.util.Position3f;
 import crafttweaker.event.EntityMountEvent;
 import crafttweaker.entity.IEntity;

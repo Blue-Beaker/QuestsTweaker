@@ -8,6 +8,7 @@ import crafttweaker.annotations.ZenRegister;
 import crafttweaker.api.minecraft.CraftTweakerMC;
 import crafttweaker.api.player.IPlayer;
 import io.bluebeaker.questtweaker.QuestTweakerMod;
+import io.bluebeaker.questtweaker.ctintegration.quests.ITaskData;
 import io.bluebeaker.questtweaker.utils.QuestUtils;
 import net.minecraft.entity.player.EntityPlayer;
 import stanhebben.zenscript.annotations.ZenClass;
@@ -29,7 +30,7 @@ public class QuestManager {
     public static void addTaskProgress(IPlayer iPlayer, int taskID, long progress) {
         EntityPlayer player = CraftTweakerMC.getPlayer(iPlayer);
         TaskData taskData = QuestUtils.getTask(player,taskID);
-        if(QuestUtils.isTaskUnlocked(taskData))
+        if(QuestUtils.isTaskActive(taskData))
             taskData.addProgress(progress);
         else{
             if(taskData==null)
@@ -47,12 +48,33 @@ public class QuestManager {
     public static void setTaskProgress(IPlayer iPlayer, int taskID, long progress) {
         EntityPlayer player = CraftTweakerMC.getPlayer(iPlayer);
         TaskData taskData = QuestUtils.getTask(player,taskID);
-        if(QuestUtils.isTaskUnlocked(taskData))
+        if(QuestUtils.isTaskActive(taskData))
             taskData.setProgress(progress);
         else{
             if(taskData==null)
                 QuestTweakerMod.getLogger().atInfo().log("setTaskProgress: Cant find task with id"+Integer.toHexString(taskID));
         }
+    }
+
+    /**Gets progress from the specified task from the player. */
+    @ZenMethod
+    public static long getTaskProgress(IPlayer iPlayer, String taskID) {
+        return getTaskProgress(iPlayer, Integer.parseUnsignedInt(taskID,16));
+    }
+    /**Gets progress from the specified task from the player. Returns -1L if the task isn't available. */
+    @ZenMethod
+    public static long getTaskProgress(IPlayer iPlayer, int taskID) {
+        EntityPlayer player = CraftTweakerMC.getPlayer(iPlayer);
+        TaskData taskData = QuestUtils.getTask(player,taskID);
+        if(QuestUtils.isTaskUnlocked(taskData))
+            return taskData.progress;
+        else{
+            if(taskData==null){
+                QuestTweakerMod.getLogger().atInfo().log("getTaskProgress: Cant find task with id"+Integer.toHexString(taskID));
+                return -1L;
+            }
+        }
+        return -1L;
     }
 
 }

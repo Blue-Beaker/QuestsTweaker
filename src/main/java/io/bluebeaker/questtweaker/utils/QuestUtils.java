@@ -32,4 +32,8 @@ public class QuestUtils {
         Quest quest = taskData.task.quest;
         return quest.areDependenciesComplete(taskData.data);
     }
+
+    public static boolean isTaskActive(TaskData taskData){
+        return isTaskUnlocked(taskData) && !taskData.isComplete();
+    }
 }
