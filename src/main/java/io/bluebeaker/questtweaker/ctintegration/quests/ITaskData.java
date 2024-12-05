@@ -20,6 +20,7 @@ public class ITaskData {
     public ITaskData(TaskData taskData){
         this.taskData=taskData;
     }
+    @ZenMethod
     @ZenGetter("task")
     public ITask getTask(){
         return new ITask(taskData.task);
