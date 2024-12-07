@@ -8,3 +8,5 @@ ftbquests.task.questtweaker.dummy.value=Value
 
 ftbquests.reward.questtweaker.function=Function
 ftbquests.reward.questtweaker.function.functionid=Function ID
+
+config.questtweaker.enum_functionIDs=Selectable Function ID

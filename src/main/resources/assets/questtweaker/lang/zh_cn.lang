@@ -8,3 +8,5 @@ ftbquests.task.questtweaker.dummy.value=值
 
 ftbquests.reward.questtweaker.function=函数
 ftbquests.reward.questtweaker.function.functionid=函数 ID
+
+config.questtweaker.enum_functionIDs=可选择的函数ID

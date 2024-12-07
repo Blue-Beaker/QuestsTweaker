@@ -3,9 +3,11 @@ package io.bluebeaker.questtweaker.quests;
 import com.feed_the_beast.ftblib.lib.config.ConfigGroup;
 import com.feed_the_beast.ftblib.lib.io.DataIn;
 import com.feed_the_beast.ftblib.lib.io.DataOut;
+import com.feed_the_beast.ftblib.lib.util.misc.NameMap;
 import com.feed_the_beast.ftbquests.quest.Quest;
 import com.feed_the_beast.ftbquests.quest.reward.Reward;
 import com.feed_the_beast.ftbquests.quest.reward.RewardType;
+import io.bluebeaker.questtweaker.QuestTweakerConfig;
 import io.bluebeaker.questtweaker.ctintegration.FunctionManager;
 import net.minecraft.entity.player.EntityPlayerMP;
 import net.minecraft.nbt.NBTTagCompound;
@@ -58,6 +60,10 @@ public class FunctionReward extends Reward {
     @SideOnly(Side.CLIENT)
     public void getConfig(ConfigGroup config) {
         super.getConfig(config);
-        config.addString("functionID",()->this.functionID,(id)->this.functionID=id, "");
+
+        if(QuestTweakerConfig.enumFunctionIDs)
+            config.addEnum("functionID", ()->this.functionID,(id)->this.functionID=id, NameMap.create("", FunctionManager.FUNCTIONS.keySet().toArray(new String[0])) );
+        else
+            config.addString("functionID",()->this.functionID,(id)->this.functionID=id, "");
     }
 }
