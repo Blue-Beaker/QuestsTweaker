@@ -3,9 +3,9 @@
 // When player crafts anything, pushes the progress of the task by one.  
 // Also sends information about the quest to the player.  
 import mods.questtweaker.QuestManager;
-import mods.queststweaker.quests.IQuestData;
-import mods.queststweaker.quests.ITaskData;
-import mods.queststweaker.questobjects.ITask;
+import mods.questtweaker.quests.IQuestData;
+import mods.questtweaker.quests.ITaskData;
+import mods.questtweaker.questobjects.ITask;
 
 events.onPlayerCrafted(function(event as crafttweaker.event.PlayerCraftedEvent){
     val taskData as ITaskData = ITaskData.getTaskData(event.player,0x58b195a7); //Change task ID here!

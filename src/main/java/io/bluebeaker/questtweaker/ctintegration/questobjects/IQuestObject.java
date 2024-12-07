@@ -6,7 +6,7 @@ import stanhebben.zenscript.annotations.ZenClass;
 import stanhebben.zenscript.annotations.ZenGetter;
 import stanhebben.zenscript.annotations.ZenMethod;
 
-@ZenClass("mods.queststweaker.questobjects.IQuestObject")
+@ZenClass("mods.questtweaker.questobjects.IQuestObject")
 @ZenRegister
 public abstract class IQuestObject {
 

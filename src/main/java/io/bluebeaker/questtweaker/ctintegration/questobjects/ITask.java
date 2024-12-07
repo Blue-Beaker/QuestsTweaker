@@ -1,6 +1,5 @@
 package io.bluebeaker.questtweaker.ctintegration.questobjects;
 
-import com.feed_the_beast.ftbquests.quest.QuestObject;
 import com.feed_the_beast.ftbquests.quest.QuestObjectBase;
 import com.feed_the_beast.ftbquests.quest.task.Task;
 import crafttweaker.annotations.ZenRegister;
@@ -8,7 +7,7 @@ import stanhebben.zenscript.annotations.ZenClass;
 import stanhebben.zenscript.annotations.ZenGetter;
 import stanhebben.zenscript.annotations.ZenMethod;
 
-@ZenClass("mods.queststweaker.questobjects.ITask")
+@ZenClass("mods.questtweaker.questobjects.ITask")
 @ZenRegister
 public class ITask extends IQuestObject {
     public final Task task;

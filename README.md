@@ -42,7 +42,7 @@ FunctionManager.addFunction(string functionID, function(IPlayer) -> long);
 The function __must__ return an long.  
 Example 1: Player's current altitude
 ```
-import mods.queststweaker.FunctionManager;
+import mods.questtweaker.FunctionManager;
 import crafttweaker.player.IPlayer;
 // string functionID, function(IPlayer) -> long
 FunctionManager.addFunction("height",function(player as IPlayer){

@@ -13,7 +13,8 @@ import stanhebben.zenscript.annotations.ZenMethod;
 
 import javax.annotation.Nullable;
 
-@ZenClass("mods.queststweaker.quests.ITaskData")
+@SuppressWarnings("rawtypes")
+@ZenClass("mods.questtweaker.quests.ITaskData")
 @ZenRegister
 public class ITaskData {
     public final TaskData taskData;
@@ -96,7 +97,7 @@ public class ITaskData {
     @ZenMethod
     public static @Nullable ITaskData getTaskData(IPlayer iPlayer, int taskID){
         EntityPlayer player = CraftTweakerMC.getPlayer(iPlayer);
-        TaskData taskData = QuestUtils.getTask(player,taskID);
+        TaskData taskData = QuestUtils.getTaskData(player,taskID);
         if(taskData==null)
             return null;
         return new ITaskData(taskData);

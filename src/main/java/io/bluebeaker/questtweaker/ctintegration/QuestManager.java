@@ -10,61 +10,73 @@ import net.minecraft.entity.player.EntityPlayer;
 import stanhebben.zenscript.annotations.ZenClass;
 import stanhebben.zenscript.annotations.ZenMethod;
 
+@SuppressWarnings("rawtypes")
 @ZenClass("mods.questtweaker.QuestManager")
 @ZenRegister
 public class QuestManager {
 
-    /**Adds progress to the specified task for the player. */
+    /**
+     * @param iPlayer IPlayer representing player
+     * @param taskID ID for the task
+     * @param progress Progress to add
+     */
     @ZenMethod
     public static void addTaskProgress(IPlayer iPlayer, String taskID, long progress) {
         addTaskProgress(iPlayer, Integer.parseUnsignedInt(taskID,16) ,progress);
     }
-    /**Adds progress to the specified task for the player. */
     @ZenMethod
     public static void addTaskProgress(IPlayer iPlayer, int taskID, long progress) {
         EntityPlayer player = CraftTweakerMC.getPlayer(iPlayer);
-        TaskData taskData = QuestUtils.getTask(player,taskID);
+        TaskData taskData = QuestUtils.getTaskData(player,taskID);
+
+        if(taskData==null){
+            QuestTweakerMod.getLogger().atInfo().log("addTaskProgress: Cant find task with id "+Integer.toHexString(taskID));
+            return;
+        }
         if(QuestUtils.isTaskActive(taskData))
             taskData.addProgress(progress);
-        else{
-            if(taskData==null)
-                QuestTweakerMod.getLogger().atInfo().log("addTaskProgress: Cant find task with id "+Integer.toHexString(taskID));
-        }
     }
 
-    /**Sets progress to the specified task for the player. */
+    /**
+     * @param iPlayer IPlayer representing player
+     * @param taskID ID for the task
+     * @param progress Progress to set
+     */
     @ZenMethod
     public static void setTaskProgress(IPlayer iPlayer, String taskID, long progress) {
         setTaskProgress(iPlayer, Integer.parseUnsignedInt(taskID,16) ,progress);
     }
-    /**Sets progress to the specified task for the player. */
     @ZenMethod
     public static void setTaskProgress(IPlayer iPlayer, int taskID, long progress) {
         EntityPlayer player = CraftTweakerMC.getPlayer(iPlayer);
-        TaskData taskData = QuestUtils.getTask(player,taskID);
+
+        TaskData taskData = QuestUtils.getTaskData(player,taskID);
+        if(taskData==null){
+            QuestTweakerMod.getLogger().atInfo().log("setTaskProgress: Cant find task with id "+Integer.toHexString(taskID));
+            return;
+        }
         if(QuestUtils.isTaskActive(taskData))
             taskData.setProgress(progress);
-        else{
-            if(taskData==null)
-                QuestTweakerMod.getLogger().atInfo().log("setTaskProgress: Cant find task with id"+Integer.toHexString(taskID));
-        }
     }
 
-    /**Gets progress from the specified task from the player. */
+    /**
+     * @param iPlayer IPlayer representing the player
+     * @param taskID ID for the task
+     * @return Progress of the task for the player. Returns -1L if the task isn't available.
+     */
     @ZenMethod
     public static long getTaskProgress(IPlayer iPlayer, String taskID) {
         return getTaskProgress(iPlayer, Integer.parseUnsignedInt(taskID,16));
     }
-    /**Gets progress from the specified task from the player. Returns -1L if the task isn't available. */
     @ZenMethod
     public static long getTaskProgress(IPlayer iPlayer, int taskID) {
         EntityPlayer player = CraftTweakerMC.getPlayer(iPlayer);
-        TaskData taskData = QuestUtils.getTask(player,taskID);
+        TaskData taskData = QuestUtils.getTaskData(player,taskID);
         if(QuestUtils.isTaskUnlocked(taskData))
             return taskData.progress;
         else{
             if(taskData==null){
-                QuestTweakerMod.getLogger().atInfo().log("getTaskProgress: Cant find task with id"+Integer.toHexString(taskID));
+                QuestTweakerMod.getLogger().atInfo().log("getTaskProgress: Cant find task with id "+Integer.toHexString(taskID));
                 return -1L;
             }
         }
