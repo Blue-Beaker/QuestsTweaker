@@ -20,7 +20,13 @@ public class QuestUtils {
         if(player==null){
             return null;
         }
-        return FTBQuests.PROXY.getQuestData(player.getEntityWorld(), player.getPersistentID());
+        try{
+            return FTBQuests.PROXY.getQuestData(player.getEntityWorld(), player.getPersistentID());
+        }
+        // Workaround for some fake-players
+        catch (Exception e){
+            return null;
+        }
     }
 
     /**
