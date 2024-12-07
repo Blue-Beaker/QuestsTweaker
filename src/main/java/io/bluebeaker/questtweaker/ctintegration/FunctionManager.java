@@ -8,6 +8,7 @@ import io.bluebeaker.questtweaker.QuestTweakerMod;
 import net.minecraft.entity.player.EntityPlayer;
 import stanhebben.zenscript.annotations.ZenClass;
 import stanhebben.zenscript.annotations.ZenMethod;
+import youyihj.zenutils.api.reload.Reloadable;
 
 import java.util.HashMap;
 
@@ -34,6 +35,8 @@ public class FunctionManager {
         return function.process(CraftTweakerMC.getIPlayer(player));
     }
 
+
+    @Reloadable
     private static class AddFunctionAction implements IAction {
 
         private final String functionID;
