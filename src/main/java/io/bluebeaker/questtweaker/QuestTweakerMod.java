@@ -1,8 +1,11 @@
 package io.bluebeaker.questtweaker;
 
+import com.latmod.mods.itemfilters.api.ItemFiltersAPI;
+import io.bluebeaker.questtweaker.filters.IIngredientFilter;
 import io.bluebeaker.questtweaker.quests.QuestTweakerPlugin;
 import net.minecraftforge.fml.common.FMLCommonHandler;
 import net.minecraftforge.fml.common.Loader;
+import net.minecraftforge.fml.common.event.FMLInitializationEvent;
 import net.minecraftforge.fml.common.event.FMLPostInitializationEvent;
 import org.apache.logging.log4j.Logger;
 
@@ -36,6 +39,11 @@ public class QuestTweakerMod
     public void preInit(FMLPreInitializationEvent event) {
         logger = event.getModLog();
         QuestTweakerPlugin.preInit();
+    }
+
+    @EventHandler
+    public void init(FMLInitializationEvent event){
+        ItemFiltersAPI.register("questtweaker_ingredient", IIngredientFilter::new);
     }
 
     @EventHandler

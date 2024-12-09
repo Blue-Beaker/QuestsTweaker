@@ -12,6 +12,7 @@ public class QuestTweakerPlugin {
     public static RewardType FUNCTION_REWARD;
 
     public static TaskType DUMMY_TASK;
+    public static TaskType INGREDIENT_TASK;
 
     public QuestTweakerPlugin(){}
 
