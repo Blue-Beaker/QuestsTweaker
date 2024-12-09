@@ -14,3 +14,9 @@ Added support for ZenUtil's reload to reload functions
 Add option to make function ID selectable in quests screen  
 # 1.1.3  
 Fixed NoSuchMethodError when trying to query quests from some fake-players. It now simply returns a null.  
+# 1.2.0
+Added Ingredient Filter for Item Filters. It matches items that matches the given `IIngredient`.  
+The `IIngredient`s for the filter is registered in a way similar to custom functions:  
+```
+IngredientManager.addIngredient(String ingredientID, IIngredient ingredient);
+```
