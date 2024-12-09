@@ -17,9 +17,7 @@ import net.minecraftforge.fml.relauncher.SideOnly;
 import net.minecraftforge.oredict.OreDictionary;
 
 import java.lang.reflect.Field;
-import java.util.ArrayList;
-import java.util.Collection;
-import java.util.List;
+import java.util.*;
 
 public class IIngredientFilter extends StringValueFilter {
 
@@ -36,19 +34,44 @@ public class IIngredientFilter extends StringValueFilter {
     }
 
     public void getValidItems(List<ItemStack> list) {
-        this.ingredient.getItems().forEach((item)->{
-            list.add(CraftTweakerMC.getItemStack(item));
-        });
+        if(this.ingredient==null)
+            return;
+        for (IItemStack item : this.ingredient.getItems()) {
+            if (item.getMetadata() == 32767) {
+                //Get all valid metas for wildcard metadata
+                List<IItemStack> subItems = item.getDefinition().getSubItems();
+                Set<Integer> metaList = new HashSet<>();
+                for (IItemStack item2 : subItems) {
+                    metaList.add(item2.getMetadata());
+                }
+                //If no subitems, add 0;
+                if (metaList.isEmpty()) {
+                    metaList.add(0);
+                }
+                for(int meta:metaList){
+                    ItemStack stack = CraftTweakerMC.getItemStack(item);
+                    stack.setItemDamage(meta);
+                    list.add(stack);
+                }
+            } else {
+                ItemStack stack = CraftTweakerMC.getItemStack(item);
+                list.add(stack);
+            }
+        }
     }
 
     @SideOnly(Side.CLIENT)
     public Collection<StringValueFilterVariant> getValueVariants() {
         List<StringValueFilterVariant> variants = new ArrayList<>();
+
         IngredientManager.INGREDIENTS.forEach((s,ingredient)->{
             StringValueFilterVariant variant = new StringValueFilterVariant(s);
             List<IItemStack> items = ingredient.getItems();
             if(!items.isEmpty()){
-                variant.icon=CraftTweakerMC.getItemStack(items.get(0));
+                ItemStack stack = CraftTweakerMC.getItemStack(items.get(0));
+                if(stack.getItemDamage()==32767)
+                    stack.setItemDamage(0);
+                variant.icon=stack;
             }
             variants.add(variant);
         });
