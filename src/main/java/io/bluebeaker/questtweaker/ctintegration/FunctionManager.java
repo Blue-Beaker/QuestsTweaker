@@ -37,7 +37,7 @@ public class FunctionManager {
 
 
     @Reloadable
-    private static class AddFunctionAction implements IAction {
+    public static class AddFunctionAction implements IAction {
 
         private final String functionID;
         private final IQuestsFunction function;
@@ -53,6 +53,9 @@ public class FunctionManager {
                 QuestTweakerMod.getLogger().warn("Duplicate function ID: '"+functionID+"'. Function IDs should be unique, please check your scripts. ");
             }
             FUNCTIONS.put(functionID, function);
+        }
+        public void undo(){
+            FUNCTIONS.remove(functionID);
         }
 
         @Override

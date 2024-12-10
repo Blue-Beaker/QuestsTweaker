@@ -36,7 +36,7 @@ public class IngredientManager {
     }
 
     @Reloadable
-    private static class AddIngredientAction implements IAction {
+    public static class AddIngredientAction implements IAction {
 
         private final String ingredientID;
         private final IIngredient ingredient;
@@ -52,6 +52,9 @@ public class IngredientManager {
                 QuestTweakerMod.getLogger().warn("Duplicate Ingredient ID: '"+ingredientID+"'. Ingredient IDs should be unique, please check your scripts. ");
             }
             INGREDIENTS.put(ingredientID, ingredient);
+        }
+        public void undo(){
+            INGREDIENTS.remove(ingredientID);
         }
 
         @Override
