@@ -1,6 +1,7 @@
 package io.bluebeaker.questtweaker.ctintegration.questobjects;
 
 import com.feed_the_beast.ftbquests.quest.Chapter;
+import crafttweaker.annotations.ZenRegister;
 import stanhebben.zenscript.annotations.ZenClass;
 import stanhebben.zenscript.annotations.ZenGetter;
 import stanhebben.zenscript.annotations.ZenMethod;
@@ -9,6 +10,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 @ZenClass("mods.questtweaker.questobjects.IChapter")
+@ZenRegister
 public class IChapter extends IQuestObject<Chapter>{
 
     public IChapter(Chapter internal) {
