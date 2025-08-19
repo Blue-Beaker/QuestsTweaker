@@ -20,3 +20,6 @@ The `IIngredient`s for the filter is registered in a way similar to custom funct
 ```
 IngredientManager.addIngredient(String ingredientID, IIngredient ingredient);
 ```
+# 1.3.0
+Added classes for QuestFile and Chapter.  
+Added conventional methods in QuestManager.  
