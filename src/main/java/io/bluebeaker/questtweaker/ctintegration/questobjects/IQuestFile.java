@@ -12,7 +12,7 @@ import stanhebben.zenscript.annotations.ZenMethod;
 
 import javax.annotation.Nullable;
 
-@ZenClass("mods.questtweaker.QuestManager")
+@ZenClass("mods.questtweaker.questobjects.IQuestFile")
 @ZenRegister
 public class IQuestFile extends IQuestObject<QuestFile> {
 
