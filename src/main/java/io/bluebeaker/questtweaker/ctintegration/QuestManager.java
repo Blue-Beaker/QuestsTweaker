@@ -4,11 +4,16 @@ import com.feed_the_beast.ftbquests.quest.task.TaskData;
 import crafttweaker.annotations.ZenRegister;
 import crafttweaker.api.minecraft.CraftTweakerMC;
 import crafttweaker.api.player.IPlayer;
+import crafttweaker.api.world.IWorld;
 import io.bluebeaker.questtweaker.QuestTweakerMod;
+import io.bluebeaker.questtweaker.ctintegration.questobjects.IQuestFile;
+import io.bluebeaker.questtweaker.ctintegration.quests.IQuestData;
 import io.bluebeaker.questtweaker.utils.QuestUtils;
 import net.minecraft.entity.player.EntityPlayer;
 import stanhebben.zenscript.annotations.ZenClass;
 import stanhebben.zenscript.annotations.ZenMethod;
+
+import javax.annotation.Nullable;
 
 @SuppressWarnings("rawtypes")
 @ZenClass("mods.questtweaker.QuestManager")
@@ -84,4 +89,15 @@ public class QuestManager {
         return -1L;
     }
 
+    @ZenMethod
+    @Nullable
+    public static IQuestFile getQuestFile(@Nullable IWorld world){
+        return IQuestFile.getQuestFile(world);
+    }
+    
+    @ZenMethod
+    @Nullable
+    public static IQuestData getQuestData(IPlayer player){
+        return IQuestData.getQuestData(player);
+    }
 }

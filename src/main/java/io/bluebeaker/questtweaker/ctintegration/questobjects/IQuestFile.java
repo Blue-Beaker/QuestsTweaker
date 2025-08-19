@@ -8,9 +8,12 @@ import crafttweaker.api.minecraft.CraftTweakerMC;
 import crafttweaker.api.world.IWorld;
 import io.bluebeaker.questtweaker.utils.QuestUtils;
 import stanhebben.zenscript.annotations.ZenClass;
+import stanhebben.zenscript.annotations.ZenGetter;
 import stanhebben.zenscript.annotations.ZenMethod;
 
 import javax.annotation.Nullable;
+import java.util.ArrayList;
+import java.util.List;
 
 @ZenClass("mods.questtweaker.questobjects.IQuestFile")
 @ZenRegister
@@ -25,6 +28,16 @@ public class IQuestFile extends IQuestObject<QuestFile> {
     public static IQuestFile getQuestFile(@Nullable IWorld world){
         QuestFile questFile1 = FTBQuests.PROXY.getQuestFile(CraftTweakerMC.getWorld(world));
         return questFile1!=null ? new IQuestFile(questFile1) : null;
+    }
+
+
+    @ZenMethod
+    @ZenGetter("chapters")
+    public List<IChapter> getChapters(){
+        List<IChapter> chapters = new ArrayList<>();
+        this.internal.chapters.forEach((chapter)
+                -> chapters.add(new IChapter(chapter)));
+        return chapters;
     }
 
     @ZenMethod
