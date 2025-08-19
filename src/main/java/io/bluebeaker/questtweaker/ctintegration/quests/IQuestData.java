@@ -37,7 +37,7 @@ public class IQuestData {
     /**Gets Task data by its ID */
     @ZenMethod
     public @Nullable ITaskData getTaskData(String taskID){
-        return getTaskData(Integer.parseUnsignedInt(taskID,16));
+        return getTaskData(QuestUtils.parseTaskID(taskID));
     }
     /**Gets Task data by its ID */
     @ZenMethod

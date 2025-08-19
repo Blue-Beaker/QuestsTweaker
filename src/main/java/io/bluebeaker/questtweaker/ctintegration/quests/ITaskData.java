@@ -90,7 +90,7 @@ public class ITaskData {
     /**Gets ITaskData object */
     @ZenMethod
     public static @Nullable ITaskData getTaskData(IPlayer iPlayer, String taskID){
-        return getTaskData(iPlayer,Integer.parseUnsignedInt(taskID,16));
+        return getTaskData(iPlayer, QuestUtils.parseTaskID(taskID));
     }
 
     /**Gets ITaskData object */

@@ -22,7 +22,7 @@ public class QuestManager {
      */
     @ZenMethod
     public static void addTaskProgress(IPlayer iPlayer, String taskID, long progress) {
-        addTaskProgress(iPlayer, Integer.parseUnsignedInt(taskID,16) ,progress);
+        addTaskProgress(iPlayer, QuestUtils.parseTaskID(taskID),progress);
     }
     @ZenMethod
     public static void addTaskProgress(IPlayer iPlayer, int taskID, long progress) {
@@ -30,7 +30,7 @@ public class QuestManager {
         TaskData taskData = QuestUtils.getTaskData(player,taskID);
 
         if(taskData==null){
-            QuestTweakerMod.getLogger().atInfo().log("addTaskProgress: Cant find task with id "+Integer.toHexString(taskID));
+            QuestTweakerMod.getLogger().atInfo().log("addTaskProgress: Cant find task with id "+ QuestUtils.getStringFromTaskID(taskID));
             return;
         }
         if(QuestUtils.isTaskActive(taskData))
@@ -44,7 +44,7 @@ public class QuestManager {
      */
     @ZenMethod
     public static void setTaskProgress(IPlayer iPlayer, String taskID, long progress) {
-        setTaskProgress(iPlayer, Integer.parseUnsignedInt(taskID,16) ,progress);
+        setTaskProgress(iPlayer, QuestUtils.parseTaskID(taskID),progress);
     }
     @ZenMethod
     public static void setTaskProgress(IPlayer iPlayer, int taskID, long progress) {
@@ -52,7 +52,7 @@ public class QuestManager {
 
         TaskData taskData = QuestUtils.getTaskData(player,taskID);
         if(taskData==null){
-            QuestTweakerMod.getLogger().atInfo().log("setTaskProgress: Cant find task with id "+Integer.toHexString(taskID));
+            QuestTweakerMod.getLogger().atInfo().log("setTaskProgress: Cant find task with id "+ QuestUtils.getStringFromTaskID(taskID));
             return;
         }
         if(QuestUtils.isTaskActive(taskData))
@@ -66,8 +66,9 @@ public class QuestManager {
      */
     @ZenMethod
     public static long getTaskProgress(IPlayer iPlayer, String taskID) {
-        return getTaskProgress(iPlayer, Integer.parseUnsignedInt(taskID,16));
+        return getTaskProgress(iPlayer, QuestUtils.parseTaskID(taskID));
     }
+
     @ZenMethod
     public static long getTaskProgress(IPlayer iPlayer, int taskID) {
         EntityPlayer player = CraftTweakerMC.getPlayer(iPlayer);
@@ -76,7 +77,7 @@ public class QuestManager {
             return taskData.progress;
         else{
             if(taskData==null){
-                QuestTweakerMod.getLogger().atInfo().log("getTaskProgress: Cant find task with id "+Integer.toHexString(taskID));
+                QuestTweakerMod.getLogger().atInfo().log("getTaskProgress: Cant find task with id "+ QuestUtils.getStringFromTaskID(taskID));
                 return -1L;
             }
         }

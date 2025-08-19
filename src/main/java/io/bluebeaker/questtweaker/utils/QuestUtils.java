@@ -67,4 +67,12 @@ public class QuestUtils {
     public static boolean isTaskActive(@Nullable TaskData taskData){
         return isTaskUnlocked(taskData) && !taskData.isComplete();
     }
+
+    public static int parseTaskID(String taskID) {
+        return Integer.parseUnsignedInt(taskID, 16);
+    }
+
+    public static String getStringFromTaskID(int taskID) {
+        return Integer.toHexString(taskID);
+    }
 }
